@@ -1,159 +1,191 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8">
-  <title>My Website</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: Arial, Helvetica, sans-serif;
-    }
-
-    body {
-      background: #f4f6f8;
-      color: #333;
-      line-height: 1.6;
-    }
-
-    header {
-      background: #1e40af;
-      color: white;
-      padding: 60px 20px;
-      text-align: center;
-    }
-
-    header h1 {
-      font-size: 2.5rem;
-      margin-bottom: 10px;
-    }
-
-    header p {
-      font-size: 1.2rem;
-    }
-
-    nav {
-      background: #0f172a;
-      padding: 15px;
-      text-align: center;
-    }
-
-    nav a {
-      color: white;
-      margin: 0 15px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    nav a:hover {
-      text-decoration: underline;
-    }
-
-    section {
-      padding: 60px 20px;
-      max-width: 1100px;
-      margin: auto;
-    }
-
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-    }
-
-    .card {
-      background: white;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-    }
-
-    .card h3 {
-      margin-bottom: 10px;
-      color: #1e40af;
-    }
-
-    footer {
-      background: #0f172a;
-      color: white;
-      text-align: center;
-      padding: 20px;
-      margin-top: 60px;
-    }
-
-    button {
-      background: #1e40af;
-      color: white;
-      border: none;
-      padding: 12px 20px;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 1rem;
-    }
-
-    button:hover {
-      background: #2563eb;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lumina Academy | Illuminating Futures</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .glass { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.3); }
+        .chat-shadow { box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); }
+        .bar-transition { transition: height 1s cubic-bezier(0.4, 0, 0.2, 1); }
+    </style>
+    <script type="importmap">
+{
+  "imports": {
+    "@google/genai": "https://esm.sh/@google/genai@^1.34.0",
+    "react": "https://esm.sh/react@^19.2.3",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "recharts": "https://esm.sh/recharts@^3.6.0"
+  }
+}
+</script>
 </head>
+<body class="bg-slate-50 text-slate-900">
+    <!-- Navbar -->
+    <nav class="fixed top-0 w-full z-50 glass">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center gap-2">
+                    <div class="w-10 h-10 bg-indigo-600 rounded-lg flex items-center justify-center text-white font-bold text-xl">L</div>
+                    <span class="text-xl font-bold text-slate-800 tracking-tight">LUMINA<span class="text-indigo-600">ACADEMY</span></span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="text-sm font-medium text-slate-600 hover:text-indigo-600 transition-colors">Home</a>
+                    <a href="#about" class="text-sm font-medium text-slate-600 hover:text-indigo-600 transition-colors">About</a>
+                    <a href="#academics" class="text-sm font-medium text-slate-600 hover:text-indigo-600 transition-colors">Academics</a>
+                    <a href="#life" class="text-sm font-medium text-slate-600 hover:text-indigo-600 transition-colors">Campus Life</a>
+                    <button class="bg-indigo-600 text-white px-5 py-2 rounded-full text-sm font-semibold hover:bg-indigo-700 transition-all shadow-md">Portal</button>
+                </div>
+                <button id="mobile-menu-btn" class="md:hidden p-2 text-slate-600">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Nav -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t p-4 space-y-4 shadow-xl">
+            <a href="#home" class="block text-base font-medium text-slate-600">Home</a>
+            <a href="#about" class="block text-base font-medium text-slate-600">About</a>
+            <a href="#academics" class="block text-base font-medium text-slate-600">Academics</a>
+            <a href="#life" class="block text-base font-medium text-slate-600">Campus Life</a>
+            <button class="w-full bg-indigo-600 text-white py-3 rounded-xl font-bold">Parent Portal</button>
+        </div>
+    </nav>
 
-<body>
+    <!-- Hero -->
+    <section id="home" class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-slate-900">
+        <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=2070" class="absolute inset-0 w-full h-full object-cover opacity-30" alt="Campus">
+        <div class="max-w-7xl mx-auto px-4 relative z-10">
+            <div class="max-w-3xl">
+                <h1 class="text-5xl lg:text-7xl font-bold text-white leading-tight mb-6">Illuminating Futures, Empowering Minds.</h1>
+                <p class="text-xl text-slate-300 mb-10 leading-relaxed">Discover a world-class K-12 education where innovation meets tradition. At Lumina, we prepare the leaders of tomorrow.</p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="#contact" class="bg-indigo-600 text-white px-8 py-4 rounded-xl font-bold hover:bg-indigo-700 transition-all shadow-xl hover:-translate-y-1">Apply Now</a>
+                    <button class="bg-white/10 backdrop-blur-md border border-white/20 text-white px-8 py-4 rounded-xl font-bold hover:bg-white/20 transition-all">Virtual Tour</button>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <header>
-    <h1>Welcome to My Website</h1>
-    <p>Simple • Fast • Free on GitHub Pages</p>
-  </header>
+    <!-- About -->
+    <section id="about" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=2000" class="rounded-3xl shadow-2xl" alt="Students">
+                    <div class="absolute -bottom-10 -right-10 bg-indigo-600 p-8 rounded-3xl shadow-2xl hidden md:block">
+                        <p class="text-white text-4xl font-bold">35+</p>
+                        <p class="text-indigo-100 text-sm font-medium uppercase tracking-widest">Years of Excellence</p>
+                    </div>
+                </div>
+                <div>
+                    <h2 class="text-3xl lg:text-4xl font-bold text-slate-900 mb-6">A Legacy of Academic Distinction</h2>
+                    <p class="text-lg text-slate-600 mb-8 leading-relaxed">Founded in 1985, Lumina Academy has consistently set the standard for private education. Our unique "Lumina Method" blends rigorous STEM focus with deep immersion in the liberal arts.</p>
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="p-6 bg-slate-50 rounded-2xl border border-slate-100">
+                            <p class="text-2xl font-bold text-indigo-600 mb-1">12:1</p>
+                            <p class="text-slate-500 text-sm">Class Ratio</p>
+                        </div>
+                        <div class="p-6 bg-slate-50 rounded-2xl border border-slate-100">
+                            <p class="text-2xl font-bold text-indigo-600 mb-1">100%</p>
+                            <p class="text-slate-500 text-sm">Graduation Rate</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <nav>
-    <a href="#home">Home</a>
-    <a href="#about">About</a>
-    <a href="#services">Services</a>
-    <a href="#contact">Contact</a>
-  </nav>
+    <!-- Academics -->
+    <section id="academics" class="py-24 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-slate-900 mb-4">Unmatched Results</h2>
+                <p class="text-slate-600 max-w-2xl mx-auto">Our students excel beyond the standard curriculum, leading the nation in STEM and Humanities scores.</p>
+            </div>
+            <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-200">
+                <div class="flex flex-col md:flex-row gap-8 items-end justify-around h-64 mt-8" id="stats-chart">
+                    <!-- Bars will be injected here via JS -->
+                </div>
+                <div class="flex justify-around mt-6 border-t pt-4" id="stats-labels">
+                    <!-- Labels will be injected here via JS -->
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <section id="about">
-    <h2>About Us</h2>
-    <p>
-      This website is built using pure HTML and CSS and hosted for free on GitHub Pages.
-      It works on phones, tablets, and desktops.
-    </p>
-  </section>
+    <!-- News -->
+    <section id="life" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-12">Campus News & Events</h2>
+            <div id="news-grid" class="grid md:grid-cols-3 gap-8">
+                <!-- News items will be injected here via JS -->
+            </div>
+        </div>
+    </section>
 
-  <section id="services">
-    <h2>Our Services</h2>
+    <!-- Contact -->
+    <section id="contact" class="py-24 bg-slate-900 text-white">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <div class="max-w-3xl mx-auto">
+                <h2 class="text-4xl font-bold mb-6">Start Your Journey</h2>
+                <p class="text-slate-400 mb-10 text-lg">Have questions? Our admissions team is ready to guide you through every step of the process.</p>
+                <form class="grid grid-cols-1 md:grid-cols-2 gap-4 text-left">
+                    <input type="text" placeholder="Full Name" class="bg-white/10 border border-white/20 p-4 rounded-xl outline-none focus:bg-white/20 transition-all">
+                    <input type="email" placeholder="Email Address" class="bg-white/10 border border-white/20 p-4 rounded-xl outline-none focus:bg-white/20 transition-all">
+                    <textarea placeholder="Tell us about your child..." class="md:col-span-2 bg-white/10 border border-white/20 p-4 rounded-xl h-32 outline-none focus:bg-white/20 transition-all"></textarea>
+                    <button class="md:col-span-2 bg-indigo-600 py-4 rounded-xl font-bold hover:bg-indigo-700 shadow-xl transition-all">Submit Inquiry</button>
+                </form>
+            </div>
+        </div>
+    </section>
 
-    <div class="cards">
-      <div class="card">
-        <h3>Web Design</h3>
-        <p>Modern, responsive, and clean website designs.</p>
-      </div>
+    <!-- Footer -->
+    <footer class="bg-slate-950 py-12 text-slate-500 text-sm border-t border-white/5 text-center">
+        <p>&copy; 2024 Lumina Academy. All rights reserved. | 123 Education Blvd, Silicon Valley, CA</p>
+    </footer>
 
-      <div class="card">
-        <h3>Hosting</h3>
-        <p>Free hosting using GitHub Pages.</p>
-      </div>
-
-      <div class="card">
-        <h3>Support</h3>
-        <p>Easy updates and maintenance.</p>
-      </div>
+    <!-- AI Assistant -->
+    <div id="chat-container" class="fixed bottom-6 right-6 z-50">
+        <!-- Toggle Button -->
+        <button id="chat-toggle" class="bg-indigo-600 text-white w-14 h-14 rounded-full shadow-2xl flex items-center justify-center hover:scale-110 transition-transform">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" strokeWidth="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path></svg>
+        </button>
+        <!-- Chat Window -->
+        <div id="chat-window" class="hidden absolute bottom-20 right-0 w-80 md:w-96 bg-white rounded-2xl chat-shadow border border-slate-200 overflow-hidden flex flex-col h-[500px]">
+            <div class="bg-indigo-600 p-4 flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">✨</div>
+                    <span class="text-white font-bold text-sm">Lumi Assistant</span>
+                </div>
+                <button id="close-chat" class="text-white/60 hover:text-white">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <div id="chat-messages" class="flex-1 overflow-y-auto p-4 space-y-4 bg-slate-50">
+                <div class="flex justify-start">
+                    <div class="bg-white p-3 rounded-2xl rounded-tl-none border shadow-sm max-w-[85%] text-sm">
+                        Welcome to Lumina Academy! I'm Lumi, your digital guide. How can I help you today?
+                    </div>
+                </div>
+            </div>
+            <div class="p-4 bg-white border-t">
+                <div class="flex gap-2">
+                    <input type="text" id="chat-input" placeholder="Ask about tuition, tours..." class="flex-1 bg-slate-100 p-3 rounded-xl text-sm outline-none focus:ring-2 focus:ring-indigo-600 focus:bg-white transition-all">
+                    <button id="send-btn" class="bg-indigo-600 text-white p-3 rounded-xl hover:bg-indigo-700">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
-  </section>
 
-  <section id="contact">
-    <h2>Contact Us</h2>
-    <p>Email: example@email.com</p>
-    <p>Phone: +256 700 000000</p>
-    <br>
-    <button onclick="alert('Thank you for visiting!')">Click Me</button>
-  </section>
-
-  <footer>
-    <p>© 2025 My Website | Built with ❤️</p>
-  </footer>
-
+    <script type="module" src="index.js"></script>
 </body>
 </html>
