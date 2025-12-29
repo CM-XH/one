@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
@@ -9,23 +8,14 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        body { font-family: 'Inter', sans-serif; }
-        .glass { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.3); }
-        .chat-shadow { box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); }
-        .bar-transition { transition: height 1s cubic-bezier(0.4, 0, 0.2, 1); }
-    </style>
+    <link rel="stylesheet" href="style.css">
     <script type="importmap">
-{
-  "imports": {
-    "@google/genai": "https://esm.sh/@google/genai@^1.34.0",
-    "react": "https://esm.sh/react@^19.2.3",
-    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
-    "react/": "https://esm.sh/react@^19.2.3/",
-    "recharts": "https://esm.sh/recharts@^3.6.0"
-  }
-}
-</script>
+    {
+      "imports": {
+        "@google/genai": "https://esm.sh/@google/genai@^1.34.0"
+      }
+    }
+    </script>
 </head>
 <body class="bg-slate-50 text-slate-900">
     <!-- Navbar -->
@@ -34,67 +24,71 @@
             <div class="flex justify-between h-16 items-center">
                 <div class="flex items-center gap-2">
                     <div class="w-10 h-10 bg-indigo-600 rounded-lg flex items-center justify-center text-white font-bold text-xl">L</div>
-                    <span class="text-xl font-bold text-slate-800 tracking-tight">LUMINA<span class="text-indigo-600">ACADEMY</span></span>
+                    <span class="text-xl font-bold text-slate-800 tracking-tight uppercase">Lumina<span class="text-indigo-600">Academy</span></span>
                 </div>
                 <div class="hidden md:flex items-center space-x-8">
-                    <a href="#home" class="text-sm font-medium text-slate-600 hover:text-indigo-600 transition-colors">Home</a>
-                    <a href="#about" class="text-sm font-medium text-slate-600 hover:text-indigo-600 transition-colors">About</a>
-                    <a href="#academics" class="text-sm font-medium text-slate-600 hover:text-indigo-600 transition-colors">Academics</a>
-                    <a href="#life" class="text-sm font-medium text-slate-600 hover:text-indigo-600 transition-colors">Campus Life</a>
-                    <button class="bg-indigo-600 text-white px-5 py-2 rounded-full text-sm font-semibold hover:bg-indigo-700 transition-all shadow-md">Portal</button>
+                    <a href="#home" class="text-sm font-semibold text-slate-600 hover:text-indigo-600 transition-colors">Home</a>
+                    <a href="#about" class="text-sm font-semibold text-slate-600 hover:text-indigo-600 transition-colors">About</a>
+                    <a href="#academics" class="text-sm font-semibold text-slate-600 hover:text-indigo-600 transition-colors">Academics</a>
+                    <a href="#life" class="text-sm font-semibold text-slate-600 hover:text-indigo-600 transition-colors">Campus Life</a>
+                    <button class="bg-indigo-600 text-white px-6 py-2 rounded-full text-sm font-bold hover:bg-indigo-700 transition-all shadow-lg">Parent Portal</button>
                 </div>
                 <button id="mobile-menu-btn" class="md:hidden p-2 text-slate-600">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
                 </button>
             </div>
         </div>
         <!-- Mobile Nav -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t p-4 space-y-4 shadow-xl">
-            <a href="#home" class="block text-base font-medium text-slate-600">Home</a>
-            <a href="#about" class="block text-base font-medium text-slate-600">About</a>
-            <a href="#academics" class="block text-base font-medium text-slate-600">Academics</a>
-            <a href="#life" class="block text-base font-medium text-slate-600">Campus Life</a>
-            <button class="w-full bg-indigo-600 text-white py-3 rounded-xl font-bold">Parent Portal</button>
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t p-4 space-y-4 shadow-2xl">
+            <a href="#home" class="block text-base font-medium text-slate-600 p-2">Home</a>
+            <a href="#about" class="block text-base font-medium text-slate-600 p-2">About</a>
+            <a href="#academics" class="block text-base font-medium text-slate-600 p-2">Academics</a>
+            <a href="#life" class="block text-base font-medium text-slate-600 p-2">Campus Life</a>
+            <button class="w-full bg-indigo-600 text-white py-3 rounded-xl font-bold">Portal Login</button>
         </div>
     </nav>
 
-    <!-- Hero -->
-    <section id="home" class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-slate-900">
-        <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=2070" class="absolute inset-0 w-full h-full object-cover opacity-30" alt="Campus">
+    <!-- Hero Section -->
+    <header id="home" class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-slate-900">
+        <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=2070" class="absolute inset-0 w-full h-full object-cover opacity-40" alt="Campus">
         <div class="max-w-7xl mx-auto px-4 relative z-10">
             <div class="max-w-3xl">
-                <h1 class="text-5xl lg:text-7xl font-bold text-white leading-tight mb-6">Illuminating Futures, Empowering Minds.</h1>
-                <p class="text-xl text-slate-300 mb-10 leading-relaxed">Discover a world-class K-12 education where innovation meets tradition. At Lumina, we prepare the leaders of tomorrow.</p>
+                <h1 class="text-5xl lg:text-7xl font-bold text-white leading-tight mb-6">Excellence in Every Lesson.</h1>
+                <p class="text-xl text-slate-200 mb-10 leading-relaxed">At Lumina Academy, we nurture curiosity, foster innovation, and build the foundation for a lifetime of success.</p>
                 <div class="flex flex-wrap gap-4">
-                    <a href="#contact" class="bg-indigo-600 text-white px-8 py-4 rounded-xl font-bold hover:bg-indigo-700 transition-all shadow-xl hover:-translate-y-1">Apply Now</a>
-                    <button class="bg-white/10 backdrop-blur-md border border-white/20 text-white px-8 py-4 rounded-xl font-bold hover:bg-white/20 transition-all">Virtual Tour</button>
+                    <a href="#contact" class="bg-indigo-600 text-white px-8 py-4 rounded-xl font-bold hover:bg-indigo-700 transition-all shadow-xl">Apply for 2025</a>
+                    <button class="bg-white/10 backdrop-blur-md border border-white/20 text-white px-8 py-4 rounded-xl font-bold hover:bg-white/20 transition-all">Request a Tour</button>
                 </div>
             </div>
         </div>
-    </section>
+    </header>
 
-    <!-- About -->
+    <!-- About Section -->
     <section id="about" class="py-24 bg-white">
         <div class="max-w-7xl mx-auto px-4">
             <div class="grid lg:grid-cols-2 gap-16 items-center">
                 <div class="relative">
-                    <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=2000" class="rounded-3xl shadow-2xl" alt="Students">
+                    <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=2000" class="rounded-3xl shadow-2xl" alt="Lumina Students">
                     <div class="absolute -bottom-10 -right-10 bg-indigo-600 p-8 rounded-3xl shadow-2xl hidden md:block">
-                        <p class="text-white text-4xl font-bold">35+</p>
-                        <p class="text-indigo-100 text-sm font-medium uppercase tracking-widest">Years of Excellence</p>
+                        <p class="text-white text-5xl font-bold">Top 1%</p>
+                        <p class="text-indigo-100 text-sm font-bold uppercase tracking-widest mt-1">National Ranking</p>
                     </div>
                 </div>
                 <div>
-                    <h2 class="text-3xl lg:text-4xl font-bold text-slate-900 mb-6">A Legacy of Academic Distinction</h2>
-                    <p class="text-lg text-slate-600 mb-8 leading-relaxed">Founded in 1985, Lumina Academy has consistently set the standard for private education. Our unique "Lumina Method" blends rigorous STEM focus with deep immersion in the liberal arts.</p>
-                    <div class="grid grid-cols-2 gap-6">
-                        <div class="p-6 bg-slate-50 rounded-2xl border border-slate-100">
-                            <p class="text-2xl font-bold text-indigo-600 mb-1">12:1</p>
-                            <p class="text-slate-500 text-sm">Class Ratio</p>
+                    <h2 class="text-4xl font-bold text-slate-900 mb-6">Nurturing Global Citizens</h2>
+                    <p class="text-lg text-slate-600 mb-8 leading-relaxed">Lumina Academy provides a holistic educational environment that balances academic rigor with creative exploration. Our faculty consists of world-class educators dedicated to student growth.</p>
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-indigo-50 rounded-full flex items-center justify-center text-indigo-600">
+                                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                            </div>
+                            <span class="font-semibold text-slate-700">STEM Focused Curriculum</span>
                         </div>
-                        <div class="p-6 bg-slate-50 rounded-2xl border border-slate-100">
-                            <p class="text-2xl font-bold text-indigo-600 mb-1">100%</p>
-                            <p class="text-slate-500 text-sm">Graduation Rate</p>
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-indigo-50 rounded-full flex items-center justify-center text-indigo-600">
+                                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                            </div>
+                            <span class="font-semibold text-slate-700">Award-winning Arts Program</span>
                         </div>
                     </div>
                 </div>
@@ -102,84 +96,145 @@
         </div>
     </section>
 
-    <!-- Academics -->
+    <!-- Academics Stats -->
     <section id="academics" class="py-24 bg-slate-50">
         <div class="max-w-7xl mx-auto px-4">
             <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold text-slate-900 mb-4">Unmatched Results</h2>
-                <p class="text-slate-600 max-w-2xl mx-auto">Our students excel beyond the standard curriculum, leading the nation in STEM and Humanities scores.</p>
+                <h2 class="text-4xl font-bold text-slate-900 mb-4">Academic Performance</h2>
+                <p class="text-slate-600 max-w-2xl mx-auto">Our students consistently achieve excellence across all core disciplines, outperforming national averages by significant margins.</p>
             </div>
-            <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-200">
-                <div class="flex flex-col md:flex-row gap-8 items-end justify-around h-64 mt-8" id="stats-chart">
-                    <!-- Bars will be injected here via JS -->
+            <div class="bg-white p-10 rounded-3xl shadow-sm border border-slate-200">
+                <div id="stats-container" class="flex flex-col md:flex-row gap-8 items-end justify-around h-72">
+                    <!-- Bars injected by JS -->
                 </div>
-                <div class="flex justify-around mt-6 border-t pt-4" id="stats-labels">
-                    <!-- Labels will be injected here via JS -->
+                <div id="stats-labels" class="flex justify-around mt-8 border-t border-slate-100 pt-6">
+                    <!-- Labels injected by JS -->
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- News -->
+    <!-- News Grid -->
     <section id="life" class="py-24 bg-white">
         <div class="max-w-7xl mx-auto px-4">
-            <h2 class="text-3xl font-bold mb-12">Campus News & Events</h2>
-            <div id="news-grid" class="grid md:grid-cols-3 gap-8">
-                <!-- News items will be injected here via JS -->
+            <div class="flex justify-between items-end mb-12">
+                <div>
+                    <h2 class="text-3xl font-bold">Campus Life & News</h2>
+                    <p class="text-slate-500 mt-2">The latest happenings from our vibrant community.</p>
+                </div>
+                <button class="text-indigo-600 font-bold hover:underline hidden sm:block">View All Posts &rarr;</button>
+            </div>
+            <div id="news-container" class="grid md:grid-cols-3 gap-8">
+                <!-- News cards injected by JS -->
             </div>
         </div>
     </section>
 
-    <!-- Contact -->
+    <!-- Contact Form -->
     <section id="contact" class="py-24 bg-slate-900 text-white">
-        <div class="max-w-7xl mx-auto px-4 text-center">
-            <div class="max-w-3xl mx-auto">
-                <h2 class="text-4xl font-bold mb-6">Start Your Journey</h2>
-                <p class="text-slate-400 mb-10 text-lg">Have questions? Our admissions team is ready to guide you through every step of the process.</p>
-                <form class="grid grid-cols-1 md:grid-cols-2 gap-4 text-left">
-                    <input type="text" placeholder="Full Name" class="bg-white/10 border border-white/20 p-4 rounded-xl outline-none focus:bg-white/20 transition-all">
-                    <input type="email" placeholder="Email Address" class="bg-white/10 border border-white/20 p-4 rounded-xl outline-none focus:bg-white/20 transition-all">
-                    <textarea placeholder="Tell us about your child..." class="md:col-span-2 bg-white/10 border border-white/20 p-4 rounded-xl h-32 outline-none focus:bg-white/20 transition-all"></textarea>
-                    <button class="md:col-span-2 bg-indigo-600 py-4 rounded-xl font-bold hover:bg-indigo-700 shadow-xl transition-all">Submit Inquiry</button>
-                </form>
+        <div class="max-w-4xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-6">Inquire Today</h2>
+                <p class="text-slate-400 text-lg">Take the first step toward your child's future at Lumina Academy.</p>
             </div>
+            <form id="contact-form" class="space-y-6">
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="space-y-2">
+                        <label class="text-sm font-bold text-slate-300">Parent Full Name</label>
+                        <input type="text" required class="w-full bg-white/5 border border-white/10 p-4 rounded-xl outline-none focus:bg-white/10 transition-all">
+                    </div>
+                    <div class="space-y-2">
+                        <label class="text-sm font-bold text-slate-300">Email Address</label>
+                        <input type="email" required class="w-full bg-white/5 border border-white/10 p-4 rounded-xl outline-none focus:bg-white/10 transition-all">
+                    </div>
+                </div>
+                <div class="space-y-2">
+                    <label class="text-sm font-bold text-slate-300">Prospective Grade Level</label>
+                    <select class="w-full bg-white/5 border border-white/10 p-4 rounded-xl outline-none focus:bg-white/10 transition-all appearance-none">
+                        <option class="bg-slate-900">Kindergarten</option>
+                        <option class="bg-slate-900">Elementary (1-5)</option>
+                        <option class="bg-slate-900">Middle School (6-8)</option>
+                        <option class="bg-slate-900">High School (9-12)</option>
+                    </select>
+                </div>
+                <div class="space-y-2">
+                    <label class="text-sm font-bold text-slate-300">Additional Information</label>
+                    <textarea rows="4" class="w-full bg-white/5 border border-white/10 p-4 rounded-xl outline-none focus:bg-white/10 transition-all"></textarea>
+                </div>
+                <button type="submit" class="w-full bg-indigo-600 py-5 rounded-xl font-bold hover:bg-indigo-700 shadow-2xl transition-all uppercase tracking-widest">Submit Inquiry</button>
+            </form>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-slate-950 py-12 text-slate-500 text-sm border-t border-white/5 text-center">
-        <p>&copy; 2024 Lumina Academy. All rights reserved. | 123 Education Blvd, Silicon Valley, CA</p>
+    <footer class="bg-slate-950 py-16 text-slate-500 text-sm border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-4 gap-12">
+            <div class="col-span-2">
+                <div class="flex items-center gap-2 mb-6">
+                    <div class="w-8 h-8 bg-slate-800 rounded flex items-center justify-center text-white font-bold">L</div>
+                    <span class="font-bold text-white tracking-widest uppercase">Lumina Academy</span>
+                </div>
+                <p class="max-w-xs leading-relaxed">Pioneering the future of education since 1985. A community dedicated to excellence, innovation, and character.</p>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-6">Quick Links</h4>
+                <ul class="space-y-4">
+                    <li><a href="#" class="hover:text-indigo-400">Admissions</a></li>
+                    <li><a href="#" class="hover:text-indigo-400">Curriculum</a></li>
+                    <li><a href="#" class="hover:text-indigo-400">Athletics</a></li>
+                    <li><a href="#" class="hover:text-indigo-400">Giving</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-6">Contact</h4>
+                <ul class="space-y-4">
+                    <li>123 Scholars Lane</li>
+                    <li>Silicon Valley, CA 94000</li>
+                    <li>+1 (555) LUMINA-0</li>
+                </ul>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 mt-16 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p>&copy; 2024 Lumina Academy. All rights reserved.</p>
+            <div class="flex gap-8">
+                <a href="#" class="hover:text-white">Privacy</a>
+                <a href="#" class="hover:text-white">Terms</a>
+            </div>
+        </div>
     </footer>
 
-    <!-- AI Assistant -->
-    <div id="chat-container" class="fixed bottom-6 right-6 z-50">
-        <!-- Toggle Button -->
-        <button id="chat-toggle" class="bg-indigo-600 text-white w-14 h-14 rounded-full shadow-2xl flex items-center justify-center hover:scale-110 transition-transform">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" strokeWidth="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path></svg>
+    <!-- AI Floating Assistant -->
+    <div id="ai-chat" class="fixed bottom-8 right-8 z-[100]">
+        <!-- Toggle -->
+        <button id="chat-toggle" class="bg-indigo-600 text-white w-16 h-16 rounded-full shadow-2xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path></svg>
         </button>
-        <!-- Chat Window -->
-        <div id="chat-window" class="hidden absolute bottom-20 right-0 w-80 md:w-96 bg-white rounded-2xl chat-shadow border border-slate-200 overflow-hidden flex flex-col h-[500px]">
-            <div class="bg-indigo-600 p-4 flex justify-between items-center">
+        <!-- Window -->
+        <div id="chat-window" class="hidden absolute bottom-20 right-0 w-[350px] md:w-[400px] h-[550px] bg-white rounded-3xl shadow-2xl border border-slate-200 flex flex-col overflow-hidden animate-in slide-in-from-bottom-5">
+            <div class="bg-indigo-600 p-5 flex justify-between items-center text-white">
                 <div class="flex items-center gap-3">
-                    <div class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">✨</div>
-                    <span class="text-white font-bold text-sm">Lumi Assistant</span>
+                    <div class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">✨</div>
+                    <div>
+                        <h4 class="font-bold text-sm">Lumi Admissions AI</h4>
+                        <p class="text-[10px] text-white/70 uppercase font-bold tracking-widest">Online Now</p>
+                    </div>
                 </div>
                 <button id="close-chat" class="text-white/60 hover:text-white">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                 </button>
             </div>
-            <div id="chat-messages" class="flex-1 overflow-y-auto p-4 space-y-4 bg-slate-50">
+            <div id="chat-messages" class="flex-1 overflow-y-auto p-5 space-y-4 bg-slate-50 text-sm">
                 <div class="flex justify-start">
-                    <div class="bg-white p-3 rounded-2xl rounded-tl-none border shadow-sm max-w-[85%] text-sm">
-                        Welcome to Lumina Academy! I'm Lumi, your digital guide. How can I help you today?
+                    <div class="bg-white p-4 rounded-2xl rounded-tl-none border shadow-sm max-w-[85%] leading-relaxed">
+                        Hello! I'm Lumi. Thinking about joining the Lumina family? I'm here to help with admissions, tours, or general school info. What's on your mind?
                     </div>
                 </div>
             </div>
             <div class="p-4 bg-white border-t">
                 <div class="flex gap-2">
-                    <input type="text" id="chat-input" placeholder="Ask about tuition, tours..." class="flex-1 bg-slate-100 p-3 rounded-xl text-sm outline-none focus:ring-2 focus:ring-indigo-600 focus:bg-white transition-all">
-                    <button id="send-btn" class="bg-indigo-600 text-white p-3 rounded-xl hover:bg-indigo-700">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                    <input type="text" id="chat-input" placeholder="Ask about tuition, tours..." class="flex-1 bg-slate-100 p-4 rounded-2xl text-sm outline-none focus:ring-2 focus:ring-indigo-600 focus:bg-white transition-all">
+                    <button id="send-chat" class="bg-indigo-600 text-white p-4 rounded-2xl hover:bg-indigo-700 transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M12 5l7 7-7 7"></path></svg>
                     </button>
                 </div>
             </div>
