@@ -215,5 +215,5 @@ main div p {
 }
 /* ===== HERO ANIMATION ===== */
 .hero {
-  animation: slideIn 1.2s ease forwards;
+  animation: fadeUp 1.2s ease forwards;
 }
